@@ -11,7 +11,7 @@ const imagekit = new IKCore({
   publicKey: "public_UA6I0D9tPS6Mbe4aqOToufAmIQw=",
   urlEndpoint: "https://ik.imagekit.io/kcnylgdo8c/",
   authenticationEndpoint:
-    "http://localhost:8888/.netlify/functions/imagekit-auth",
+    "/.netlify/functions/imagekit-auth",
 });
 
 interface UploadImageErrorResponse {
