@@ -1,0 +1,8 @@
+[build]
+    base="."
+    publish="dist"
+    command="vite build"
+
+[functions]
+    directory="netlify/functions"
+    node_bundler="esbuild"
