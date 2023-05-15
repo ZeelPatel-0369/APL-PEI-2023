@@ -27,6 +27,9 @@ export default function Form() {
   const [success, setSuccess] = useState(false);
   const [isConsentChecked, setIsConsentChecked] =
     useState<CheckboxProps["checked"]>(false);
+  const [batsmanRating, setBatsmanRating] = useState([0]);
+  const [bowlerRating, setBowlerRating] = useState([0]);
+  const [fielderRating, setFielderRating] = useState([0]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -267,6 +270,7 @@ export default function Form() {
                     ]}
                     selectLabel="Select Playing Role"
                     selectValue="Batsman"
+                    defaultValue="Batsman"
                     required
                   />
                 </div>
@@ -280,6 +284,7 @@ export default function Form() {
                     selectOptions={["S", "M", "L", "XL"]}
                     selectLabel="Select Playing Role"
                     selectValue="S"
+                    defaultValue="S"
                     required
                   />
                 </div>
@@ -296,6 +301,11 @@ export default function Form() {
                     min={0}
                     max={10}
                     step={1}
+                    value={batsmanRating}
+                    onValueChange={(value) => {
+                      setBatsmanRating(value);
+                    }}
+                    label="Rating"
                     required
                   />
                 </div>
@@ -341,6 +351,11 @@ export default function Form() {
                     min={0}
                     max={10}
                     step={1}
+                    label="Rating"
+                    value={bowlerRating}
+                    onValueChange={(value) => {
+                      setBowlerRating(value);
+                    }}
                     required
                   />
                 </div>
@@ -412,6 +427,11 @@ export default function Form() {
                     min={0}
                     max={10}
                     step={1}
+                    value={fielderRating}
+                    onValueChange={(value) => {
+                      setFielderRating(value);
+                    }}
+                    label="Rating"
                     required
                   />
                 </div>
