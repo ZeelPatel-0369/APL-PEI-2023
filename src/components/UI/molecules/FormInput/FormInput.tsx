@@ -127,7 +127,7 @@ export default function FormInput(props: FormInputProps) {
               <SelectGroup>
                 <SelectLabel>{props.selectLabel}</SelectLabel>
                 {props.selectOptions.map((option) => (
-                  <SelectItem key={option} value={option.toLocaleLowerCase()}>
+                  <SelectItem key={option} value={option}>
                     {option}
                   </SelectItem>
                 ))}

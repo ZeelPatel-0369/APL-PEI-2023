@@ -9,13 +9,13 @@ import { CheckboxProps } from "@/components/UI/atoms/Checkbox";
 
 const healthCardOptions = [
   {
-    label: "Yes, I do have health Card",
-    value: "healthCard",
+    label: "Yes, I do have health card",
+    value: "Yes health card",
     id: "healthCard",
   },
   {
     label: "No, I don't have health card",
-    value: "noHealthCard",
+    value: "No health card",
     id: "noHealthCard",
   },
 ] satisfies Array<RadioOptions>;
@@ -132,7 +132,7 @@ export default function Form() {
                     type="hidden"
                     id="type"
                     name="type"
-                    value="player"
+                    value="Player"
                     required
                   />
                 </div>
@@ -307,12 +307,12 @@ export default function Form() {
                     radioOptions={[
                       {
                         label: "Right handed",
-                        value: "rightHanded",
+                        value: "Right handed",
                         id: "rightHanded",
                       },
                       {
                         label: "Left handed",
-                        value: "leftHanded",
+                        value: "Left handed",
                         id: "leftHanded",
                       },
                     ]}
@@ -352,12 +352,12 @@ export default function Form() {
                     radioOptions={[
                       {
                         label: "Right arm",
-                        value: "rightArm",
+                        value: "Right arm",
                         id: "rightArm",
                       },
                       {
                         label: "Left arm",
-                        value: "leftArm",
+                        value: "Left arm",
                         id: "leftArm",
                       },
                     ]}
@@ -373,17 +373,17 @@ export default function Form() {
                     radioOptions={[
                       {
                         label: "Spin",
-                        value: "spin",
+                        value: "Spin",
                         id: "spin",
                       },
                       {
                         label: "Medium Pace",
-                        value: "mediumPace",
+                        value: "Medium Pace",
                         id: "mediumPace",
                       },
                       {
                         label: "Fast Pace",
-                        value: "fastPace",
+                        value: "Fast Pace",
                         id: "fastPace",
                       },
                     ]}
