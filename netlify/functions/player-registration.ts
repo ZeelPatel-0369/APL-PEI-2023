@@ -140,7 +140,7 @@ const handler: Handler = async (event) => {
         fee: "50",
         feeEmail: "atmiyapei@gmail.com",
         auctionDate: "17th June 2023",
-        plaDate: "1st and 2nd July 2023",
+        playDate: "1st and 2nd July 2023",
       },
     });
 
