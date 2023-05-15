@@ -11,6 +11,7 @@
     "generate": "plop"
   },
   "dependencies": {
+    "@netlify/emails": "^1.1.0",
     "@netlify/functions": "^1.6.0",
     "@radix-ui/react-checkbox": "^1.0.3",
     "@radix-ui/react-label": "^2.0.1",

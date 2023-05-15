@@ -1,4 +1,5 @@
 import { Handler } from "@netlify/functions";
+import { sendEmail } from "@netlify/emails";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 interface PlayerRegistration {
@@ -126,6 +127,23 @@ const handler: Handler = async (event) => {
         body: JSON.stringify({ message: "Something went wrong" }),
       };
     }
+
+    // send email
+    await sendEmail({
+      from: "atmiyapei@gmail.com",
+      to: email,
+      subject: "APL 2023 player registration",
+      template: "player-registered",
+      parameters: {
+        year: year,
+        name: `${firstName} ${lastName}`,
+        fee: "50",
+        feeEmail: "atmiyapei@gmail.com",
+        auctionDate: "17th June 2023",
+        plaDate: "1st and 2nd July 2023",
+      },
+    });
+
     return {
       statusCode: 200,
       body: JSON.stringify({ message: "Registration successful" }),

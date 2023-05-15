@@ -1,0 +1,36 @@
+<mjml>
+  <mj-body>
+    <mj-section background-color="#f0f0f0">
+      <mj-column width="100%">
+        <mj-text
+          align="center"
+          font-size="26px"
+          color="#0f172a"
+        >
+          Atmiya Premiere League {{year}}
+        </mj-text>
+        <mj-text
+          font-size="18px"
+          color="#0f172a"
+          line-height="22px"
+        > 
+          Thank you {{name}} for registering for Atmiya Premiere League {{year}}.
+        </mj-text>
+        <mj-text
+          font-size="18px"
+          color="#0f172a"
+          line-height="22px"
+        > 
+          Your spot will be confirmed once you pay the registration fees of ${{fee}}. Please pay the fees to the following email: {{feeEmail}}.
+        </mj-text>
+        <mj-text
+          font-size="18px"
+          color="#0f172a"
+          line-height="22px"
+        > 
+          A reminder that the auction will be on {{auctionDate}} and the play will be on {{playDate}}.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
