@@ -193,7 +193,7 @@ export default function Form() {
                         required
                       />
                       <Paragraph variant="muted" size="sm">
-                        accepted format is 123-456-7890
+                        accepted format is 1234567890
                       </Paragraph>
                     </div>
                   </div>
