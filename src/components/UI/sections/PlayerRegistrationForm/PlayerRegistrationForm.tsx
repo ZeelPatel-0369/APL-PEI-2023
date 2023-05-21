@@ -107,7 +107,7 @@ export default function Form() {
           <Paragraph className="text-success" size="lg">
             Your registration is <b>NOT</b> yet confirmed. Please send{" "}
             <b>$50</b> to <b>atmiyapei@gmail.com</b> to complete your
-            registration.
+            registration. And add your Name and Phone number in message section of Interac.
           </Paragraph>
         </div>
       ) : (
