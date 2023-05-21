@@ -21,7 +21,7 @@
           color="#0f172a"
           line-height="22px"
         > 
-          Your spot will be confirmed once you pay the registration fees of ${{fee}}. Please pay the fees to the following email: {{feeEmail}}.
+          Your spot will be confirmed once you pay the registration fees of ${{fee}}. Please pay the fees to the following email: {{feeEmail}} and attach your Name and Phone number in Message section of Interac.
         </mj-text>
         <mj-text
           font-size="18px"
