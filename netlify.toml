@@ -20,7 +20,7 @@
     VITE_SITE_URL = "https://apl.sabhapei.com"
 
 [context.deploy-preview.environment]
-    MY_ENV = "deploy-preview"
+    MY_ENV = "production"
     VITE_SITE_URL = "https://deploy-preview--apl-pei.netlify.app"
 
 [context.branch-deploy.environment]
