@@ -101,7 +101,6 @@ const handler: Handler = async (event) => {
     const date = new Date();
     const year = date.getFullYear();
 
-    console.log(process.env.MY_ENV);
     if (process.env.MY_ENV !== "production") {
       sheet = doc.sheetsByTitle["dev"];
     } else {
