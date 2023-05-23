@@ -7,12 +7,11 @@ if (!import.meta.env.VITE_IMAGEKIT_AUTH_ENDPOINT) {
   throw new Error("IMAGEKIT_AUTH_ENDPOINT is not defined");
 }
 
-const endpoint = import.meta.env.VITE_SITE_URL
+const endpoint = import.meta.env.VITE_SITE_URL;
 const imagekit = new IKCore({
   publicKey: "public_UA6I0D9tPS6Mbe4aqOToufAmIQw=",
   urlEndpoint: "https://ik.imagekit.io/kcnylgdo8c/",
-  authenticationEndpoint:
-    `${endpoint}/.netlify/functions/imagekit-auth`,
+  authenticationEndpoint: `${endpoint}/api/imagekit-auth`,
 });
 
 interface UploadImageErrorResponse {
@@ -25,7 +24,7 @@ interface UploadImageSuccessResponse {
 export type UploadImageResponse =
   | UploadImageErrorResponse
   | UploadImageSuccessResponse;
-export function uploadImage({
+export async function uploadImage({
   file,
   fileName,
 }: {

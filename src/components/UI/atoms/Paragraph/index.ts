@@ -1,1 +1,1 @@
-export { default, type ParagraphProps } from "./Paragraph"
+export { Paragraph, type ParagraphProps } from "./Paragraph";

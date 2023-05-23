@@ -1,3 +1,4 @@
+import * as React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -23,19 +24,19 @@ export interface ParagraphProps
   extends React.HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof paragraphVariants> {}
 
-export default function Button({
-  className,
-  variant,
-  size,
-  children,
-  ...props
-}: ParagraphProps) {
-  return (
-    <p
-      className={cn(paragraphVariants({ variant, size, className }))}
-      {...props}
-    >
-      {children}
-    </p>
-  );
-}
+const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+  ({ className, variant, size, children, ...props }, ref) => {
+    return (
+      <p
+        className={cn(paragraphVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </p>
+    );
+  }
+);
+Paragraph.displayName = "Paragraph";
+
+export { Paragraph };

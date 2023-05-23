@@ -11,9 +11,11 @@
     "generate": "plop"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@netlify/emails": "^1.1.0",
     "@netlify/functions": "^1.6.0",
     "@radix-ui/react-checkbox": "^1.0.3",
+    "@radix-ui/react-dialog": "^1.0.3",
     "@radix-ui/react-label": "^2.0.1",
     "@radix-ui/react-radio-group": "^1.1.2",
     "@radix-ui/react-select": "^1.2.1",
@@ -28,8 +30,11 @@
     "lucide-react": "^0.216.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-router-dom": "^6.11.2",
     "tailwind-merge": "^1.12.0",
-    "tailwindcss-animate": "^1.0.5"
+    "tailwindcss-animate": "^1.0.5",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/google-spreadsheet": "^3.3.2",

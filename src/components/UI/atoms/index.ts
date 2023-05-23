@@ -1,8 +1,7 @@
-import Heading from "./Heading";
-import Link from "./Link";
-import Button from "./Button";
-import Input from "./Input";
-import Label from "./Label";
+import { Heading } from "./Heading";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { Label } from "./Label";
 import {
   Select,
   SelectContent,
@@ -12,16 +11,25 @@ import {
   SelectGroup,
   SelectLabel,
 } from "./Select";
-import Paragraph from "./Paragraph";
-import Slider from "./Slider";
+import { Paragraph } from "./Paragraph";
+import { Slider } from "./Slider";
 import { RadioGroup, RadioGroupItem } from "./Radio";
-import Textarea from './Textarea';
-import Checkbox from './Checkbox';
+import { Textarea } from "./Textarea";
+import { Checkbox } from "./Checkbox";
+import { Image } from "./Image";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "./Dialog";
 // COMPONENT IMPORTS
 
 export {
   Heading,
-  Link,
   Button,
   Input,
   Label,
@@ -37,6 +45,14 @@ export {
   RadioGroup,
   RadioGroupItem,
   Textarea,
-Checkbox,
-// COMPONENT EXPORTS
+  Checkbox,
+  Image,
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+  // COMPONENT EXPORTS
 };

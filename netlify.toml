@@ -9,3 +9,8 @@
 
 [[plugins]]
     package = "@netlify/plugin-emails"
+
+[[redirects]]
+    from = "/api/*"
+    to = "/.netlify/functions/:splat"
+    status = 200

@@ -1,6 +1,9 @@
 import { Handler } from "@netlify/functions";
 import { sendEmail } from "@netlify/emails";
-import { GoogleSpreadsheet } from "google-spreadsheet";
+import {
+  GoogleSpreadsheet,
+  GoogleSpreadsheetWorksheet,
+} from "google-spreadsheet";
 
 interface PlayerRegistration {
   type: string;
@@ -13,16 +16,16 @@ interface PlayerRegistration {
   healthCard: string;
   playingRole: string;
   tshirtSize: string;
-  batsmanRating: string;
+  batsmanRating: Array<number>;
   handedBatsman: string;
   battingComment: string;
-  bowlerRating: string;
+  bowlerRating: Array<number>;
   armBowler: string;
   typeBowler: string;
   bowlingComment: string;
-  fielderRating: string;
+  fielderRating: Array<number>;
   fielderComment: string;
-  terms: "on" | undefined;
+  terms: boolean;
   imageUrl: string;
 }
 
@@ -76,12 +79,13 @@ const handler: Handler = async (event) => {
       terms,
       imageUrl,
     } = JSON.parse(event.body || "") as PlayerRegistration;
-    if (terms !== "on") {
-      console.log("Error: ", "You must accept the terms and conditions");
+
+    if (!terms) {
+      console.error("You must accept the terms.");
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: "You must accept the terms and conditions",
+          message: "You must accept the terms.",
         }),
       };
     }
@@ -93,9 +97,16 @@ const handler: Handler = async (event) => {
 
     await doc.loadInfo();
 
+    let sheet: GoogleSpreadsheetWorksheet;
     const date = new Date();
     const year = date.getFullYear();
-    const sheet = doc.sheetsByTitle[year];
+
+    if (process.env.CONTEXT !== "production") {
+      console.log("!production");
+      sheet = doc.sheetsByTitle["dev"];
+    } else {
+      sheet = doc.sheetsByTitle[year];
+    }
 
     const newRow = await sheet.addRow({
       [headerValues[0]]: type,
@@ -105,14 +116,14 @@ const handler: Handler = async (event) => {
       [headerValues[4]]: tel,
       [headerValues[5]]: email,
       [headerValues[6]]: playingRole,
-      [headerValues[7]]: batsmanRating,
+      [headerValues[7]]: batsmanRating[0],
       [headerValues[8]]: handedBatsman,
       [headerValues[9]]: battingComment,
-      [headerValues[10]]: bowlerRating,
+      [headerValues[10]]: bowlerRating[0],
       [headerValues[11]]: armBowler,
       [headerValues[12]]: typeBowler,
       [headerValues[13]]: bowlingComment,
-      [headerValues[14]]: fielderRating,
+      [headerValues[14]]: fielderRating[0],
       [headerValues[15]]: fielderComment,
       [headerValues[16]]: dob,
       [headerValues[17]]: healthCard,
@@ -124,7 +135,9 @@ const handler: Handler = async (event) => {
       console.error("Error: ", "failed at adding new row");
       return {
         statusCode: 500,
-        body: JSON.stringify({ message: "Something went wrong" }),
+        body: JSON.stringify({
+          message: "Something went wrong. Please try again.",
+        }),
       };
     }
 
@@ -148,11 +161,17 @@ const handler: Handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify({ message: "Registration successful" }),
     };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "Registration successful" }),
+    };
   } catch (error) {
     console.error("Catch Error: ", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Something went wrong" }),
+      body: JSON.stringify({
+        message: "Something went wrong. Please try again.",
+      }),
     };
   }
 };

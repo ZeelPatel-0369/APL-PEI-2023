@@ -1,3 +1,4 @@
+import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
 import { Paragraph } from "@/components/UI/atoms";
@@ -6,12 +7,10 @@ export interface SliderProps extends SliderPrimitive.SliderProps {
   label: string;
 }
 
-export default function Slider({
-  className,
-  value,
-  label,
-  ...props
-}: SliderProps) {
+const Slider = React.forwardRef<
+  React.ElementRef<typeof SliderPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & SliderProps
+>(({ className, value, label, ...props }, ref) => {
   return (
     <>
       <SliderPrimitive.Root
@@ -20,6 +19,7 @@ export default function Slider({
           className
         )}
         value={value}
+        ref={ref}
         {...props}
       >
         <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
@@ -34,4 +34,7 @@ export default function Slider({
       ) : null}
     </>
   );
-}
+});
+Slider.displayName = "Slider";
+
+export { Slider };
