@@ -6,7 +6,7 @@ import { AuctionHouse, AuctionLoginForm } from "@/components/UI/sections";
 const queryClient = new QueryClient();
 
 export default function Auction() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   if (!isLoggedIn) {
     return <AuctionLoginForm setIsLoggedIn={setIsLoggedIn} />;
