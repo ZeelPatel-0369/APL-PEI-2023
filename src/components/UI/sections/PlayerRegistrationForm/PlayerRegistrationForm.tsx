@@ -130,7 +130,7 @@ export default function PlayerRegistrationForm() {
   });
   const { formState } = form;
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function handlePlayerRegistration(values: z.infer<typeof formSchema>) {
     setError("");
     setSuccess(false);
 
@@ -250,7 +250,10 @@ export default function PlayerRegistrationForm() {
         </Paragraph>
       </div>
       <Form {...form}>
-        <form className="mt-5" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="mt-5"
+          onSubmit={form.handleSubmit(handlePlayerRegistration)}
+        >
           <div>
             <Paragraph className="text-destructive">
               * All fields are required

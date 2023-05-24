@@ -53,7 +53,7 @@ export default function AuctionLoginForm({
   });
   const { formState } = form;
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function handleLogin(values: z.infer<typeof formSchema>) {
     setError("");
     setIsLoggedIn(false);
 
@@ -91,10 +91,10 @@ export default function AuctionLoginForm({
     <Dialog defaultOpen open>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Log in</DialogTitle>
+          <DialogTitle>Login</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-8">
             <FormField
               control={form.control}
               name="username"
@@ -129,40 +129,6 @@ export default function AuctionLoginForm({
             </Button>
           </form>
         </Form>
-        {/* <form onSubmit={handleLogin}>
-          <div className="flex flex-col gap-5 md:grid-cols-2 md:grid md:gap-3 mt-3">
-            <div>
-              <FormInput
-                labelProps={{ children: "Username" }}
-                inputType="input"
-                type="text"
-                id="username"
-                name="username"
-                placeholder="username"
-                required
-              />
-            </div>
-            <div>
-              <FormInput
-                labelProps={{ children: "Password" }}
-                inputType="input"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="password"
-                required
-              />
-            </div>
-          </div>
-          <div className="mt-5">
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? (
-                <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-              ) : null}
-              Register
-            </Button>
-          </div>
-        </form> */}
         {error ? <ErrorMessage>{error}</ErrorMessage> : null}
       </DialogContent>
     </Dialog>

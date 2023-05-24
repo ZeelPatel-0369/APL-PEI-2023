@@ -2,7 +2,7 @@ import { Handler } from "@netlify/functions";
 import { sendEmail } from "@netlify/emails";
 import {
   GoogleSpreadsheet,
-  GoogleSpreadsheetWorksheet,
+  type GoogleSpreadsheetWorksheet,
 } from "google-spreadsheet";
 
 interface PlayerRegistration {
