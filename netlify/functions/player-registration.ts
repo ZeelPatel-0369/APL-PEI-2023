@@ -31,7 +31,7 @@ interface PlayerRegistration {
 
 const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID || "");
 
-const headerValues = [
+export const headerValues = [
   "Type",
   "First name",
   "Last name",
@@ -158,10 +158,6 @@ const handler: Handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Registration successful" }),
-    };
-    return {
-      statusCode: 500,
       body: JSON.stringify({ message: "Registration successful" }),
     };
   } catch (error) {

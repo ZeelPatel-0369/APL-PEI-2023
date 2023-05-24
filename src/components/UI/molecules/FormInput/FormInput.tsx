@@ -102,8 +102,11 @@ export default function FormInput(props: FormInputProps) {
             required={props.required}
           />
           <Input
-            {...omitProps(props, "inputType", "labelProps")}
-            className={`${props.error ? "border-destructive" : ""}`}
+            {...omitProps(props, "inputType", "labelProps", "className")}
+            className={cn(
+              `${props.error ? "border-destructive" : ""}`,
+              props.className
+            )}
           />
           {props.error ? <Error>{props.error}</Error> : null}
         </>
@@ -119,7 +122,7 @@ export default function FormInput(props: FormInputProps) {
           />
           <Select {...omitProps(props, "inputType", "labelProps")}>
             <SelectTrigger
-              className={`${props.error ? "border-destructive" : ""}`}
+              className={cn(`${props.error ? "border-destructive" : ""}`)}
             >
               <SelectValue placeholder={props.selectValue} />
             </SelectTrigger>
@@ -191,8 +194,11 @@ export default function FormInput(props: FormInputProps) {
             required={props.required}
           />
           <Checkbox
-            {...omitProps(props, "inputType", "labelProps")}
-            className={`${props.error ? "border-destructive" : ""}`}
+            {...omitProps(props, "inputType", "labelProps", "className")}
+            className={cn(
+              `${props.error ? "border-destructive" : ""}`,
+              props.className
+            )}
           />
           {props.error ? <Error>{props.error}</Error> : null}
         </>
@@ -207,8 +213,11 @@ export default function FormInput(props: FormInputProps) {
             required={props.required}
           />
           <Textarea
-            {...omitProps(props, "inputType", "labelProps")}
-            className={`${props.error ? "border-destructive" : ""}`}
+            {...omitProps(props, "inputType", "labelProps", "className")}
+            className={cn(
+              `${props.error ? "border-destructive" : ""}`,
+              props.className
+            )}
           />
           {props.error ? <Error>{props.error}</Error> : null}
         </>
