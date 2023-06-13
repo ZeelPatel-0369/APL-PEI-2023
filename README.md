@@ -11,11 +11,14 @@
 - [Netlify](https://www.netlify.com/products/functions/) functions for backend
 - [Netlify](https://www.netlify.com/) for deployment
 - [ImageKit](https://imagekit.io/) for hosting images
-- [Google Spreadsheets](https://spreadsheets.google.com/) for database 😅
+- [Google Spreadsheet](https://spreadsheets.google.com/) for database 😅
+- [google-spreadsheet] (https://www.npmjs.com/package/google-spreadsheet) for managing Google spreadsheet
 
 ## How to setup
 - run `npm ci` to install local dependencies
 - run `npm i -g netlify-cli` to install netlify cli globally (this is needed to run the dev command later)
 
 ## How to run on local machine
-- run `ntl dev` to run netlify functions and vite app at once
+- copy `.env.example` and rename it to `.env.local` and add the missing env variables
+- run `npm i netlify-cli -g` to install netlify cli globally onto your machine
+- run `npm run ntl-dev` to run netlify functions and vite app at once
