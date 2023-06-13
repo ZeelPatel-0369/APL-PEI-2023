@@ -30,21 +30,12 @@ const handler: Handler = async () => {
 
   const maxCount = sheet.rowCount;
   const existingIntsInRedis = await redis.keys("*");
-  const randomInt = getRandomInt(
-    maxCount,
-    existingIntsInRedis.map((i) => parseInt(i))
-  );
-  if (randomInt === -1) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        message: "No more players to show.",
-      }),
-    };
-  }
 
-  const rows = await sheet.getRows();
-  const randomRow = rows[randomInt];
+  const { randomRow, randomInt } = await getRandomRow(
+    maxCount,
+    existingIntsInRedis,
+    sheet
+  );
 
   const player = {
     id: randomInt,
@@ -84,4 +75,30 @@ function getRandomInt(max: number, exclude: number[]): number {
     return getRandomInt(max, exclude);
   }
   return randomInt;
+}
+
+async function getRandomRow(
+  maxCount: number,
+  existingIntsInRedis: string[],
+  sheet: GoogleSpreadsheetWorksheet
+) {
+  const randomInt = getRandomInt(
+    maxCount,
+    existingIntsInRedis.map((i) => parseInt(i))
+  );
+  if (randomInt === -1) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: "No more players to show.",
+      }),
+    };
+  }
+
+  const rows = await sheet.getRows();
+  const randomRow = rows[randomInt];
+  if (randomRow[headerValues[0]] !== "Player") {
+    return await getRandomRow(maxCount, existingIntsInRedis, sheet);
+  }
+  return { randomRow, randomInt };
 }
