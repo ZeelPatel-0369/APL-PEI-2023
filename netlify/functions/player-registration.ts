@@ -52,6 +52,8 @@ export const headerValues = [
   "Health card",
   "T-shirt size",
   "Image Url",
+  "Team",
+  "Sold for",
 ] as const;
 
 const handler: Handler = async (event) => {

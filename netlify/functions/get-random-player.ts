@@ -97,7 +97,8 @@ async function getRandomRow(
 
   const rows = await sheet.getRows();
   const randomRow = rows[randomInt];
-  if (randomRow[headerValues[0]] !== "Player") {
+  console.log(randomInt, randomRow[headerValues[20]]);
+  if (randomRow[headerValues[20]]) {
     return await getRandomRow(maxCount, existingIntsInRedis, sheet);
   }
   return { randomRow, randomInt };
