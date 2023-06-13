@@ -28,14 +28,14 @@ const handler: Handler = async () => {
     sheet = doc.sheetsByTitle[year];
   }
 
-  const maxCount = sheet.rowCount;
-  const existingIntsInRedis = await redis.keys("*");
+  const { randomRow, randomInt } = await getRandomRow(sheet);
 
-  const { randomRow, randomInt } = await getRandomRow(
-    maxCount,
-    existingIntsInRedis,
-    sheet
-  );
+  if (!randomRow) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "All players sold!" }),
+    };
+  }
 
   const player = {
     id: randomInt,
@@ -66,40 +66,33 @@ export { handler };
 
 // function to generate random number between 0 and max excluding the numbers in the array
 // return -1 if no number can be generated
-function getRandomInt(max: number, exclude: number[]): number {
+async function getRandomInt(sheet: GoogleSpreadsheetWorksheet) {
+  const max = sheet.rowCount - 1;
+  const exclude = (await redis.keys("*")).map((i) => parseInt(i));
+
   const randomInt = Math.floor(Math.random() * Math.floor(max));
+
   if (exclude.includes(randomInt)) {
-    if (exclude.length === max) {
+    if (exclude.length == max) {
       return -1;
     }
-    return getRandomInt(max, exclude);
+    return getRandomInt(sheet);
   }
   return randomInt;
 }
 
-async function getRandomRow(
-  maxCount: number,
-  existingIntsInRedis: string[],
-  sheet: GoogleSpreadsheetWorksheet
-) {
-  const randomInt = getRandomInt(
-    maxCount,
-    existingIntsInRedis.map((i) => parseInt(i))
-  );
+async function getRandomRow(sheet: GoogleSpreadsheetWorksheet) {
+  const randomInt = await getRandomInt(sheet);
   if (randomInt === -1) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        message: "No more players to show.",
-      }),
-    };
+    return false;
   }
 
   const rows = await sheet.getRows();
   const randomRow = rows[randomInt];
-  console.log(randomInt, randomRow[headerValues[20]]);
+
   if (randomRow[headerValues[20]]) {
-    return await getRandomRow(maxCount, existingIntsInRedis, sheet);
+    await redis.set(randomInt.toString(), randomInt);
+    return await getRandomRow(sheet);
   }
   return { randomRow, randomInt };
 }
